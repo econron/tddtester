@@ -1,10 +1,22 @@
-open class Money(val amount: Int) {
+open class Money(val amount: Int, val currency: String) {
 
     fun equals(obj: Money): Boolean
     {
         val money: Money = obj
-        // ７章のソースは臭いが、getClassをうまく表現できないものだろうか？
-        // もしくはkotlinぽくgetClassを汚く書けないだろうか？後回し。
         return amount == money.amount
+    }
+
+    open fun currency() : String
+    {
+        return currency
+    }
+
+    companion object Factory{
+        fun dollar(amount: Int, currency: String): Dollar{
+            return Dollar(amount, currency)
+        }
+        fun franc(amount: Int, currency: String): Franc{
+            return Franc(amount, currency)
+        }
     }
 }
