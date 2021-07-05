@@ -17,11 +17,11 @@ open class Money(val amount: Int, val currency: String) {
     }
 
     companion object Factory{
-        fun dollar(amount: Int, currency: String): Dollar{
-            return Dollar(amount, currency)
+        fun dollar(amount: Int, currency: String): Money{
+            return Money(amount, currency)
         }
-        fun franc(amount: Int, currency: String): Franc{
-            return Franc(amount, currency)
+        fun franc(amount: Int, currency: String): Money{
+            return Money(amount, currency)
         }
     }
 }
