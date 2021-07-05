@@ -1,4 +1,4 @@
-open class Money(val amount: Int, val currency: String) {
+open class Money(val amount: Int, val currency: String): Expression {
 
     fun equals(obj: Money): Boolean
     {
@@ -14,6 +14,12 @@ open class Money(val amount: Int, val currency: String) {
     fun times(multiplier: Int): Int
     {
         return amount * multiplier
+    }
+
+    // chapter12: 複数の通貨を扱っていることをほとんど意識させないようにしたい　という制約
+    fun plus(addend: Money): Money
+    {
+        return Money(addend.amount, currency)
     }
 
     companion object Factory{

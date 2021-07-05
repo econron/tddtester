@@ -52,4 +52,19 @@ class MoneyTest {
         assertTrue(Money.franc(1, "CHF").equals(Money.franc(1, "CHF")))
     }
 
+    @Test
+    fun testSimpleAddition()
+    {
+//        val sum: Money = Money.dollar(5, "USD").plus(Money.dollar(5, "USD"))
+//        assertEquals(sum, Money.dollar(10, "USD").amount)
+        // ($2 + 3CHF) * 5
+        // 手持ちの有価証券を足し合わせていきExpressionオブジェクトにする。それを為替レートによって１つのレートに変換する
+        val five: Money = Money.dollar(5, "USD")
+        val sum: Expression = five.plus(five)
+        val bank = Bank()
+        val reduced: Money = bank.reduce(sum, "USD")
+        // 書籍ではテストが通っている。kotlinでは生成されるオブジェクトのhashを比較しているのでエラーとなる。
+        assertEquals(Money.dollar(10, "USD"), reduced)
+    }
+
 }
