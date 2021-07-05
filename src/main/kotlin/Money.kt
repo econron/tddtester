@@ -6,9 +6,14 @@ open class Money(val amount: Int, val currency: String) {
         return amount == money.amount
     }
 
-    open fun currency() : String
+    open fun currency(): String
     {
         return currency
+    }
+
+    fun times(multiplier: Int): Int
+    {
+        return amount * multiplier
     }
 
     companion object Factory{

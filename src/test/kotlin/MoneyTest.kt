@@ -50,6 +50,7 @@ class MoneyTest {
     {
         assertEquals("USD", Money.dollar(1, "USD").currency())
         assertEquals("CHF", Money.franc(1, "CHF").currency())
+        assertTrue(Money.franc(1, "CHF").equals(Franc(1, "CHF")))
     }
 
 }
