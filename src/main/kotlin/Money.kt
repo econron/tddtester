@@ -17,12 +17,15 @@ open class Money(val amount: Int, val currency: String): Expression {
     }
 
     // chapter12: 複数の通貨を扱っていることをほとんど意識させないようにしたい　という制約
-    fun plus(addend: Money): Money
+    fun plus(addend: Money): Expression
     {
-        return Money(addend.amount, currency)
+        return Sum(Money.money(amount, currency), addend)
     }
 
     companion object Factory{
+        fun money(amount: Int, currency: String): Money{
+            return Money(amount, currency)
+        }
         fun dollar(amount: Int, currency: String): Money{
             return Money(amount, currency)
         }
