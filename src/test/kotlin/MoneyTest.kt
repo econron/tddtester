@@ -73,8 +73,8 @@ class MoneyTest {
         val five: Money = Money.dollar(5, "USD")
         val result: Expression = five.plus(five)
         val sum: Sum = result as Sum
-        assertEquals(five, sum.augend)
-        assertEquals(five, sum.addend)
+        assertTrue(five.equals(sum.augend))
+        assertTrue(five.equals(sum.addend))
     }
 
     @Test
@@ -83,7 +83,7 @@ class MoneyTest {
         val sum: Expression = Sum(Money.dollar(3, "USD"), Money.dollar(4, "USD"))
         val bank: Bank = Bank()
         val result: Money = bank.reduce(sum, "USD")
-        assertEquals(Money.dollar(7, "USD"), result)
+        assertTrue(Money.dollar(7, "USD").equals(result))
     }
 
 }

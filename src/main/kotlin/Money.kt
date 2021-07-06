@@ -1,10 +1,10 @@
 open class Money(val amount: Int, val currency: String): Expression {
 
-    fun equals(obj: Money): Boolean
-    {
-        val money: Money = obj
-        return amount == money.amount
-    }
+//    fun equals(obj: Money): Boolean
+//    {
+//        val money: Money = obj
+//        return amount == money.amount
+//    }
 
     open fun currency(): String
     {
