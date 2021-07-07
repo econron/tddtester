@@ -22,6 +22,11 @@ open class Money(val amount: Int, val currency: String): Expression {
         return Sum(Money.money(amount, currency), addend)
     }
 
+    override fun reduce(to: String): Money
+    {
+        return this
+    }
+
     companion object Factory{
         fun money(amount: Int, currency: String): Money{
             return Money(amount, currency)
