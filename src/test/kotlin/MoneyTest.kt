@@ -92,4 +92,25 @@ class MoneyTest {
         assertTrue(Money.dollar(1, "USD").equals(result))
     }
 
+    @Test
+    fun testReduceMoneyDifferentCurrency()
+    {
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val result: Money = bank.reduce(Money.franc(2, "CHF"), "USD")
+        assertTrue(Money.dollar(1, "USD") == result)
+    }
+
+    @Test
+    fun testMixedAddition()
+    {
+        val fiveBucks: Expression = Money.dollar(5, "USD")
+        val tenFrans: Expression = Money.franc(10, "CHF")
+        val bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        val result: Money = bank.reduce(fiveBucks.plus(tenFrans), "USD")
+        assertEquals(Money.dollar(10, "USD"), result)
+
+    }
+
 }

@@ -1,4 +1,4 @@
-open class Money(val amount: Int, val currency: String): Expression {
+open class Money(override val amount: Int, val currency: String): Expression {
 
 //    fun equals(obj: Money): Boolean
 //    {
@@ -11,20 +11,20 @@ open class Money(val amount: Int, val currency: String): Expression {
         return currency
     }
 
-    fun times(multiplier: Int): Int
+    fun times(multiplier: Int): Expression
     {
-        return amount * multiplier
+        return money(multiplier * amount, currency)
     }
 
     // chapter12: 複数の通貨を扱っていることをほとんど意識させないようにしたい　という制約
-    fun plus(addend: Money): Expression
-    {
-        return Sum(Money.money(amount, currency), addend)
+    override fun plus(addend: Expression): Expression {
+        return Sum(money(amount, currency), addend)
     }
 
-    override fun reduce(to: String): Money
+    override fun reduce(bank: Bank, to: String): Money
     {
-        return this
+        val rate: Int? = bank.rate(currency, to)
+        return Money(amount / rate!!, to)
     }
 
     companion object Factory{
